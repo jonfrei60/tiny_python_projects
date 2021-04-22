@@ -33,6 +33,22 @@ def test_usage():
 
 
 # --------------------------------------------------
+def test_starboard_side():
+    """starboard side"""
+
+    for flag in ['-s', '--starboard']:
+        out = getoutput(f'{prg} mullet {flag}')
+        assert 'starboard' in out.lower()
+
+
+# --------------------------------------------------
+def test_larboard_side():
+    """larboard side"""
+
+    out = getoutput(f'{prg} mullet')
+    assert 'larboard' in out.lower()
+
+# --------------------------------------------------
 def test_consonant():
     """brigantine -> a brigantine"""
 
