@@ -26,7 +26,7 @@ def test_usage():
 
 # --------------------------------------------------
 def test_01():
-    """test"""
+    """test, single numeric string"""
 
     rv, out = getstatusoutput(f'{prg} 123-456-7890')
     assert rv == 0
@@ -35,8 +35,17 @@ def test_01():
 
 # --------------------------------------------------
 def test_02():
-    """test"""
+    """test, quoted string"""
 
     rv, out = getstatusoutput(f'{prg} "That number to call is 098-765-4321."')
+    assert rv == 0
+    assert out.rstrip() == 'That number to call is 512-340-6789.'
+
+
+# --------------------------------------------------
+def test_03():
+    """test, unquoted string"""
+
+    rv, out = getstatusoutput(f'{prg} That number to call is 098-765-4321.')
     assert rv == 0
     assert out.rstrip() == 'That number to call is 512-340-6789.'
